@@ -20,7 +20,7 @@ public class ProductManager {
         this.repository = repository;
     }
 
-    public void add(Product product) {                                  // менеджер умеет добавлять продукты в репозиторий
+    public void add(Product product) {                                  
         repository.save(product);
     }
 
