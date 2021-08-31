@@ -9,35 +9,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductRepositoryTest {
     private ProductRepository repository = new ProductRepository();
-    private Book coreJava = new Book();
-    private Product homer = new Product(56, "theOdyssey", 1200);
-    private Smartphone iPhone = new Smartphone();
+    private Book Dubliners = new Book(124, "Dubliners", 1000, "Joyce");
+    private Smartphone iPhoneSE20 = new Smartphone(1003, "iPhoneSE20", 44900, "Apple");
 
     @Test
-    public void shouldSaveOneBook() {               // проверяем что книга является продуктом
-        repository.save(coreJava);                  // сохраняем книгу в репозиторий продукта
+    public void shouldSaveOneBook() {
+        repository.save(Dubliners);
 
-        Product[] expected = new Product[]{coreJava};
+        Product[] expected = new Product[]{Dubliners};
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldSaveOneSmartphone() {         // проверяем что смартфон является продуктом
-        repository.save(iPhone);                    // сохраняем смартфон в репозиторий продукта
+    public void shouldSaveOneSmartphone() {
+        repository.save(iPhoneSE20);
 
-        Product[] expected = new Product[]{iPhone};
+        Product[] expected = new Product[]{iPhoneSE20};
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldRemoveById() {                // проверяем метод удаления по Id
-        repository.save(homer);
-        repository.save(iPhone);                    // добавили два продукта
-        repository.removeById(56);                  // удалили продукт homer
+    public void shouldRemoveById() {
+        repository.save(Dubliners);
+        repository.save(iPhoneSE20);
+        repository.removeById(1003);
 
-        Product[] expected = new Product[]{iPhone}; // остался продукт iPhone
+        Product[] expected = new Product[]{Dubliners};
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
